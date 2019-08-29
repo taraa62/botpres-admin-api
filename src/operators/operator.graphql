@@ -1,0 +1,19 @@
+type Operator {
+    id: ID
+    created: Date!
+
+    name:String!
+    login:String!
+    lastname: String!
+}
+
+type Query {
+   operator(login:String!):Operator!
+    operators(page:Int!):[Operator!]
+}
+
+
+type Mutation{
+    create(name:String, login:String!, lastname: String!):Operator!
+    delete(id:String, login:String):Operator
+}

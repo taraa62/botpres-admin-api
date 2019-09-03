@@ -1,0 +1,19 @@
+type Status{
+    id:String!
+    status:String!
+}
+type Hooker{
+    id:String!
+    name:String!
+    selected:Int!
+}
+
+type Query{
+    statuses:[Status!]
+    getHooker(name:String!):Hooker!
+    getHookers:[Hooker!]
+}
+
+type Mutation {
+    selectedHooker(name:String!):Hooker!
+}

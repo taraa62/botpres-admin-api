@@ -1,0 +1,36 @@
+enum TypeMessanger{
+    TELEGRAM
+    WEB
+    VIBER
+    WHATSAPP
+    FACEBOOK
+
+}
+
+input ClientInfo{
+    name:String
+    lastname:String
+    email:String
+    phone:String
+    typeMessanger:TypeMessanger!
+    messangerID:String
+    operatorName:String!
+    selectGirl:String
+    statusEnd: String!
+}
+
+type Query {
+    test:String
+}
+
+type WorkerRO{
+    isNewUser:Boolean!
+    isCreate:Boolean!
+}
+
+
+type Mutation {
+    addChat(client:ClientInfo!, mess:String!):WorkerRO
+
+}
+

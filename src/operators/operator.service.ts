@@ -31,7 +31,6 @@ export class OperatorService {
     user = await this.operationRepository.create(data);
     await this.operationRepository.save(user);
     return user;
-
   }
 
   public async deleteOperator({ id, login }): Promise<any> {

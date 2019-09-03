@@ -6,12 +6,14 @@ export class OperatorEntity {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-
   @CreateDateColumn()
   public created:Date;
 
   @UpdateDateColumn()
   public updated: Date;
+
+
+
 
   @Column("text")
   public login :string;

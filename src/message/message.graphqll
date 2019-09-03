@@ -1,0 +1,9 @@
+type Message {
+    id: ID
+    created: Date!
+
+}
+
+type Query{
+    test:String
+}

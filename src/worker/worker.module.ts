@@ -9,11 +9,14 @@ import { SharedEntityService } from '../shared/entity/shared.entity.service';
 import { MessageEntity } from '../message/message.entity';
 import { HookersEntity } from '../shared/entity/hookers.entity';
 import { StatusEntity } from '../shared/entity/status.entity';
+import { OperatorService } from '../operators/operator.service';
+import { OperatorEntity } from '../operators/operator.entity';
+import { WorkerController } from './worker.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ClientEntity, MessageEntity, HookersEntity, StatusEntity])],
-  controllers: [],
-  providers: [WorkerService, WorkerResolver, ClientService, MessageService, SharedEntityService],
+  imports: [TypeOrmModule.forFeature([ClientEntity, MessageEntity, HookersEntity, StatusEntity, OperatorEntity])],
+  controllers: [WorkerController],
+  providers: [WorkerService, WorkerResolver, ClientService, MessageService, SharedEntityService, OperatorService],
 
 })
 

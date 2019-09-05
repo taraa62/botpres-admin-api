@@ -16,10 +16,10 @@ export class MessageService {
     try {
       const data = {
         conversation: mess,
-         hookerID: info.selectGirl,
-        operatorID: 1,
+        hookerID: info.selectGirl,
+        operatorID: info.operatorLogin,
         statusEnd: info.statusEnd,
-        clientID: client.id,
+        client: client
       };
       const res: InsertResult = await this.messRepos.insert(data as any).catch(er => {
         console.error(er);
@@ -31,5 +31,17 @@ export class MessageService {
     }
     return null;
   }
+
+  public async dropTable(): Promise<any> {
+
+    return await this.messRepos.createQueryBuilder().connection.createQueryRunner('master').dropTable('message').then(v => {
+      return { status: 'ok', error: null };
+    }).catch(er => {
+      return { status: 'error', error: er };
+    });
+
+  }
+
+
 
 }

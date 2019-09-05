@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinTable, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { StatusEntity } from '../shared/entity/status.entity';
 import { ClientEntity } from '../client/client.entity';
 
@@ -17,21 +17,19 @@ export class MessageEntity {
   @Column({ type: 'text' })
   public conversation: string;
 
-  @Column('int')
-  public operatorID: number;
+  @Column('text')
+  public operatorID: string;
 
   @Column({ type: 'text', default: null })
   public hookerID: string;
 
-  @OneToOne(clientID => ClientEntity)
-  @JoinTable()
-  public clientID: ClientEntity;
-
-  @OneToOne(status => StatusEntity)
-  @JoinTable()
-  public statusEnd: StatusEntity;
+  @Column('text')
+  public statusEnd: string;
 
   @Column({ type: 'text', default: null })
   public comment: string;
+
+  @ManyToOne(type => ClientEntity, client=> client.messages)
+  public client: ClientEntity;
 
 }

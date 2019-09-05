@@ -14,13 +14,48 @@ input ClientInfo{
     phone:String
     typeMessanger:TypeMessanger!
     messangerID:String
-    operatorName:String!
+    operatorLogin:String!
     selectGirl:String
     statusEnd: String!
 }
 
+type ResultDrop{
+    status:String
+    error:String
+}
+
+type MessageEntity{
+    id: String
+    conversation:String
+}
+
+
+input ClientEntity {
+    id: String
+    created: Date
+    updated: Date
+    name: String
+    email: String
+    phone: String
+    appendMessage:Boolean
+}
+
+type ClientEntityOut {
+    id: String
+    created: Date
+    updated: Date
+    name: String
+    email: String
+    phone: String
+    messages:[MessageEntity]
+}
+
 type Query {
     test:String
+    dropTable(table:String!):ResultDrop
+    # statistic
+    clients:[ClientEntityOut]
+    clientsOf(option:ClientEntity):[ClientEntityOut]
 }
 
 type WorkerRO{

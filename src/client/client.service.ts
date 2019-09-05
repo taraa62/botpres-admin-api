@@ -3,6 +3,7 @@ import { ClientInfo } from '../worker/worker.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClientEntity } from './client.entity';
 import { Repository } from 'typeorm';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ClientService {
@@ -31,14 +32,27 @@ export class ClientService {
     const data = {
       name: info.name || null,
       phone: info.phone || null,
-      email: info.phone || null,
+      email: info.email || null,
       comment: null,
     };
-    user = await this.clintRepos.insert(data as any).catch(er => {
+    /*user = await this.clintRepos.insert(data as any).catch(er => {
       console.error(er);
       return null;
-    });
+    });*/
+
+    user = await this.clintRepos.create(data as any);
+    await this.clintRepos.save(user);
+
     return user.raw ? user.raw[0] : user;
     // return null;
   }
+
+  public async getAllUser(opt: ClientEntity = null): Promise<ClientEntity[]> {
+    let res;
+    opt = plainToClass(ClientEntity, opt);
+    // res = await this.clintRepos.find({relations:["messages"]});
+    res = await this.clintRepos.find({ where: opt, join: { alias: 'u', innerJoinAndSelect: { messages: 'u.messages' } } });
+    return res;
+  }
+
 }

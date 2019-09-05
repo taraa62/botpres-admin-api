@@ -14,7 +14,7 @@ export class ClientInfo {
   public phone: String;
   public typeMessanger: TypeMessanger;
   public messangerID:String;
-  public operatorName:String;
+  public operatorLogin:String;
   public selectGirl: String;
   public statusEnd: String;
 }

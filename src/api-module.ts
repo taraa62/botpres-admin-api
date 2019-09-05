@@ -5,6 +5,7 @@ import { MessageModule } from './message/message.module';
 import { ClientModule } from './client/client.module';
 import { WorkerModule } from './worker/worker.module';
 
+
 @Module({
   imports: [
     OperatorModule,
@@ -19,7 +20,7 @@ import { WorkerModule } from './worker/worker.module';
     MessageModule,
     ClientModule,
     WorkerModule,
-  ],
+  ]
 })
 export class ApiModule {
 

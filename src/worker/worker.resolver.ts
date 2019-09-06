@@ -32,7 +32,7 @@ export class WorkerResolver {
 
   @Mutation()
   public async addChat(@Args('client')client: ClientInfo, @Args('mess') mess: String): Promise<WorkerRO> {
-    return await this.workerService.addConversation(client, mess);
+    return this.workerService.addConversation(client, mess);
 
   }
 

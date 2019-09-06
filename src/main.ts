@@ -10,24 +10,23 @@ process.env.SERVICE_HOST = process.env.SERVICE_HOST || 'localhost';
 
 async function bootstrap() {
   const app: INestApplication = await NestFactory.create(AppModule);
-  /*app.enableCors({
+  app.enableCors({
     origin: [
       'http://localhost:4200', // angular
       'http://localhost:3000', // react
       'http://localhost:8081', // react-native
     ],
-  });*/
-
+  });
 
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-
+      port: 4555,
       retryDelay: 2000,
       retryAttempts: 5,
     },
   });
-
+  await app.startAllMicroservicesAsync();
   await app.listen(port);
   Logger.log(`Server running on http://localhost:${port}`, 'Bootstrap');
 }
